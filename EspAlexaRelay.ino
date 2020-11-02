@@ -58,7 +58,7 @@ void setup()
   // Parameter to add device name on Runtime
   // if you add more relay means you have added more device , so to fget their name on run time you will need to add html lines here
   //html line ------    Device-X Name:<br><input type='text' name='DX' value=><br>
-  const char* custom="<form>Device-1 Name:<br><input type='text' name='D1' value='Light'><br>Device-2 Name:<br><input type='text' name='D2' value='Lamp'><br>Device-3 Name:<br><input type='text' name='D3' value='TV'><br>Device-4 Name:<br><input type='text' name='D4' value='Fan'><br>";
+  const char* custom="<form>Device-1 Name:<br><input type='text' name='D1' value=><br>Device-2 Name:<br><input type='text' name='D2' value=><br>Device-3 Name:<br><input type='text' name='D3' value=><br>Device-4 Name:<br><input type='text' name='D4' value=><br>";
   new (&custom_field) WiFiManagerParameter(custom);
   
  //adding parameter to wifimanager
@@ -191,12 +191,30 @@ String getParam(String name){
 }
 void saveParamCallback(){
   Serial.println("[CALLBACK] saveParamCallback fired");
-  Device1=getParam("D1");
-  Device2=getParam("D2");
-  Device3=getParam("D3");
-  Device4=getParam("D4");
+
+  if(isNullOrEmpty(getParam("D1")));
+  else
+  {Device1=getParam("D1");}
+  
+  if(isNullOrEmpty(getParam("D2")));
+  else
+  {Device1=getParam("D2");}
+  
+  if(isNullOrEmpty(getParam("D3")));
+  else
+  {Device1=getParam("D3");}
+  
+  if(isNullOrEmpty(getParam("D4")));
+  else
+  {Device1=getParam("D4");}
   Serial.println("PARAM D1 = " + Device1);
   Serial.println("PARAM D2 = " + Device2);
   Serial.println("PARAM D3 = " + Device3);
   Serial.println("PARAM D4 = " + Device4);
 }
+// this check if the given string is empty or not
+ boolean isNullOrEmpty(String str) {
+        if(!str.isEmpty())
+            return false;
+        return true;
+ }
